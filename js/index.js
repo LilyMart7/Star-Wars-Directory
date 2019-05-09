@@ -1,7 +1,7 @@
 
 let xhr = new XMLHttpRequest();
 
-xhr.open("GET", "https://swapi.co/api/planets/1/", true);
+xhr.open("GET", "https://swapi.co/api/people/1/", true);
 xhr.send();
 
     xhr.onreadystatechange = function () {

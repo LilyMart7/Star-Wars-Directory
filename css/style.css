@@ -1,0 +1,59 @@
+
+@font-face {
+    font-family: 'star_jedi_logo_monolineRg';
+    src: url('fonts/stjelogo/h1/strjmono-webfont.eot');
+    src: url('strjmono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/stjelogo/h1/strjmono-webfont.woff2') format('woff2'),
+         url('fonts/stjelogo/h1/strjmono-webfont.woff') format('woff'),
+         url('fonts/stjelogo/h1/strjmono-webfont.ttf') format('truetype'),
+         url('fonts/stjelogo/h1/strjmono-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'star_jedi_outlineregular';
+    src: url('fonts/starjout/starjout-webfont.eot');
+    src: url('starjout-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/starjout/starjout-webfont.woff2') format('woff2'),
+         url('fonts/starjout/starjout-webfont.woff') format('woff'),
+         url('fonts/starjout/starjout-webfont.ttf') format('truetype'),
+         url('fonts/starjout/starjout-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(241, 241, 28);
+    border-radius: 20px;
+}
+
+h1{
+    font-family: star_jedi_logo_monolineRg;
+    font-size: 4rem;
+    
+}
+
+.logo{
+   
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 5;
+    height: 72px;
+    width: 65px;
+}
+
+.quote{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: star_jedi_outlineregular;
+    font-size: 1.5rem;
+}
