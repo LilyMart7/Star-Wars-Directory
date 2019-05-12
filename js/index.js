@@ -1,7 +1,29 @@
+window.addEventListener("load", Init);
+
+window.onload = function(){
+    let preloader = document.getElementById('preloader');
+    preloader.style.display = 'none';
+}
+
+
+function Init() {
+    console.log("Init");
+ 
+    var callbackFunction = [people];
+
+
+    for (var i = 0; i < people.length; i++) {
+        peopleRequest(people[i], callbackFunction[i].people);
+    }
+
+}
+
+
+function peopleRequest(people, callback) {
 
 let xhr = new XMLHttpRequest();
 
-xhr.open("GET", "https://swapi.co/api/people/1/", true);
+xhr.open("GET", "https://swapi.co/api/people", true);
 xhr.send();
 
     xhr.onreadystatechange = function () {
@@ -13,6 +35,53 @@ xhr.send();
             console.log(errStatus + ": " + errText);
         } else {
             var data = JSON.parse(xhr.responseText);
-              console.log(data);      
+            console.log(data); 
+            renderPeople(people);  
         }
+    }
     };
+
+
+
+
+    function renderPeople(people) {
+        console.log(people);
+    
+        var peopleElem = document.querySelector("#people");
+      
+        for (let i = 0; i < 10; i++) {
+    
+            let peopleDiv = document.createElement("div");
+            peopleDiv.className = "people";
+
+            let name = document.createElement("div");
+            name.className = "name";
+            name.innerHTML = `${people.results[i].name}`;
+    
+            let birth_year = document.createElement("div");
+            birth_year.className = "birth_year";
+            birth_year.innerHTML = `${people.results[i].birth_year}`;
+
+            let homeworld = document.createElement("div");
+            homeworld.className = "homeworld";
+            homeworld.innerHTML = `${people.results[i].homeworld}`;
+
+            let spaceships = document.createElement("div");
+            spaceships.className = "spaceships";
+            spaceships.innerHTML = `${people.results[i].spaceships}`;
+
+            let species = document.createElement("div");
+            species.className = "species";
+            species.innerHTML = `${people.results[i].species}`;
+    
+           
+            peopleElem.appendChild(peopleDiv);
+            peopleDiv.appendChild(name);
+            peopleDiv.appendChild(birth_year);
+            peopleDiv.appendChild(homeworld);
+            peopleDiv.appendChild(spaceships);
+            peopleDiv.appendChild(species);
+        
+        }
+    }
+    
