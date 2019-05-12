@@ -1,30 +1,16 @@
-window.addEventListener("load", Init);
+window.addEventListener("load", peopleRequest);
 
-window.onload = function(){
+window.onload = function () {
     let preloader = document.getElementById('preloader');
     preloader.style.display = 'none';
 }
 
+function peopleRequest() {
 
-function Init() {
-    console.log("Init");
- 
-    var callbackFunction = [people];
+    let xhr = new XMLHttpRequest();
 
-
-    for (var i = 0; i < people.length; i++) {
-        peopleRequest(people[i], callbackFunction[i].people);
-    }
-
-}
-
-
-function peopleRequest(people, callback) {
-
-let xhr = new XMLHttpRequest();
-
-xhr.open("GET", "https://swapi.co/api/people", true);
-xhr.send();
+    xhr.open("GET", "https://swapi.co/api/people", true);
+    xhr.send();
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState != 4) return;
@@ -34,54 +20,51 @@ xhr.send();
             var errText = xhr.statusText;
             console.log(errStatus + ": " + errText);
         } else {
-            var data = JSON.parse(xhr.responseText);
-            console.log(data); 
-            renderPeople(people);  
+            renderPeople(JSON.parse(xhr.responseText));
         }
     }
-    };
+};
 
 
 
 
-    function renderPeople(people) {
-        console.log(people);
-    
-        var peopleElem = document.querySelector("#people");
-      
-        for (let i = 0; i < 10; i++) {
-    
-            let peopleDiv = document.createElement("div");
-            peopleDiv.className = "people";
+function renderPeople(people) {
+    console.log(people);
 
-            let name = document.createElement("div");
-            name.className = "name";
-            name.innerHTML = `${people.results[i].name}`;
-    
-            let birth_year = document.createElement("div");
-            birth_year.className = "birth_year";
-            birth_year.innerHTML = `${people.results[i].birth_year}`;
+    var peopleElem = document.querySelector("#people");
 
-            let homeworld = document.createElement("div");
-            homeworld.className = "homeworld";
-            homeworld.innerHTML = `${people.results[i].homeworld}`;
+    for (let i = 0; i < 10; i++) {
 
-            let spaceships = document.createElement("div");
-            spaceships.className = "spaceships";
-            spaceships.innerHTML = `${people.results[i].spaceships}`;
+        let peopleDiv = document.createElement("div");
+        peopleDiv.className = "people";
 
-            let species = document.createElement("div");
-            species.className = "species";
-            species.innerHTML = `${people.results[i].species}`;
-    
-           
-            peopleElem.appendChild(peopleDiv);
-            peopleDiv.appendChild(name);
-            peopleDiv.appendChild(birth_year);
-            peopleDiv.appendChild(homeworld);
-            peopleDiv.appendChild(spaceships);
-            peopleDiv.appendChild(species);
-        
-        }
+        let name = document.createElement("div");
+        name.className = "name";
+        name.innerHTML = `${people.results[i].name}`;
+
+        let birth_year = document.createElement("div");
+        birth_year.className = "birth_year";
+        birth_year.innerHTML = `${people.results[i].birth_year}`;
+
+        let homeworld = document.createElement("div");
+        homeworld.className = "homeworld";
+        homeworld.innerHTML = `${people.results[i].homeworld}`;
+
+        let spaceships = document.createElement("div");
+        spaceships.className = "spaceships";
+        spaceships.innerHTML = `${people.results[i].spaceships}`;
+
+        let species = document.createElement("div");
+        species.className = "species";
+        species.innerHTML = `${people.results[i].species}`;
+
+
+        peopleElem.appendChild(peopleDiv);
+        peopleDiv.appendChild(name);
+        peopleDiv.appendChild(birth_year);
+        peopleDiv.appendChild(homeworld);
+        peopleDiv.appendChild(spaceships);
+        peopleDiv.appendChild(species);
+
     }
-    
+}
