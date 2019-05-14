@@ -9,7 +9,9 @@ function peopleRequest() {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "https://swapi.co/api/people", true);
+    let url = `https://swapi.co/api/people`;
+    
+    xhr.open("GET", url, true);
     xhr.send();
 
     xhr.onreadystatechange = function () {
@@ -27,44 +29,47 @@ function peopleRequest() {
 
 
 
-
-function renderPeople(people) {
+let renderPeople = (people) => {
     console.log(people);
 
     var peopleElem = document.querySelector("#people");
 
     for (let i = 0; i < 10; i++) {
 
-        let peopleDiv = document.createElement("div");
+        let peopleDiv = document.createElement("tr");
         peopleDiv.className = "people";
+        peopleElem.appendChild(peopleDiv);
 
-        let name = document.createElement("div");
+        let name = document.createElement("td");
         name.className = "name";
         name.innerHTML = `${people.results[i].name}`;
+        peopleDiv.appendChild(name);
 
-        let birth_year = document.createElement("div");
+        let birth_year = document.createElement("td");
         birth_year.className = "birth_year";
         birth_year.innerHTML = `${people.results[i].birth_year}`;
-
-        let homeworld = document.createElement("div");
-        homeworld.className = "homeworld";
-        homeworld.innerHTML = `${people.results[i].homeworld}`;
-
-        let spaceships = document.createElement("div");
-        spaceships.className = "spaceships";
-        spaceships.innerHTML = `${people.results[i].spaceships}`;
-
-        let species = document.createElement("div");
-        species.className = "species";
-        species.innerHTML = `${people.results[i].species}`;
-
-
-        peopleElem.appendChild(peopleDiv);
-        peopleDiv.appendChild(name);
         peopleDiv.appendChild(birth_year);
-        peopleDiv.appendChild(homeworld);
-        peopleDiv.appendChild(spaceships);
-        peopleDiv.appendChild(species);
+
+        let height = document.createElement("td");
+        height.className = "height";
+        height.innerHTML = `${people.results[i].height}`;
+        peopleDiv.appendChild(height);
+
+        let mass = document.createElement("td");
+        mass.className = "mass";
+        mass.innerHTML = `${people.results[i].mass}`;
+        peopleDiv.appendChild(mass);
+
+        let hair_color = document.createElement("td");
+        hair_color.className = "hair_color";
+        hair_color.innerHTML = `${people.results[i].hair_color}`;
+        peopleDiv.appendChild(hair_color);
+
+        let skin_color = document.createElement("td");
+        skin_color.className = "skin_color";
+        skin_color.innerHTML = `${people.results[i].skin_color}`;
+        peopleDiv.appendChild(skin_color);
 
     }
 }
+

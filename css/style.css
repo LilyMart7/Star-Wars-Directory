@@ -215,6 +215,10 @@
 	}
 }
 
+.main{
+	background: url(..//img/sw1.png);
+}
+
 .header{
     display: flex;
     justify-content: space-evenly;
@@ -227,7 +231,10 @@
 
 h1{
     font-family: star_jedi_logo_monolineRg;
-    font-size: 4rem;
+	font-size: 4rem;
+	-webkit-text-fill-color: auto;
+  -webkit-text-stroke-color: rgb(233, 233, 34);
+  -webkit-text-stroke-width: 2.00px; 
     
 }
 
@@ -245,5 +252,31 @@ h1{
     justify-content: space-evenly;
     align-items: center;
     font-family: star_jedi_outlineregular;
-    font-size: 1.5rem;
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+	-webkit-text-fill-color: auto;
+  -webkit-text-stroke-color: rgb(233, 233, 34);
+  -webkit-text-stroke-width: 0.3px; 
 }
+
+.table{
+	margin-bottom: 35px;
+}
+
+.pagination a {
+	color: #fff;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	background-color: transparent;
+  }
+  
+  /* Style the active/current link */
+  .pagination a.active {
+	background-color: dodgerblue;
+	color: white;
+  }
+  
+  /* Add a grey background color on mouse-over */
+  .pagination a:hover:not(.active) {background-color: rgb(233, 233, 34); color: black;}
