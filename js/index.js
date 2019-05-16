@@ -1,16 +1,28 @@
-window.addEventListener("load", peopleRequest);
+window.addEventListener("load", peopleRequest());
 
 window.onload = function () {
     let preloader = document.getElementById('preloader');
     preloader.style.display = 'none';
 }
 
-function peopleRequest() {
+function peopleRequest(page) {
 
     let xhr = new XMLHttpRequest();
 
-    let url = `https://swapi.co/api/people`;
-    
+   /* let pagination = document.querySelector(".pagination");
+    let page = 1;
+    pagination.addEventListener("click", function() {
+        if (page >= 1) {
+            page++;
+            console.log(page);
+        }
+    });
+*/
+
+  
+
+    let url = `https://swapi.co/api/people/?page=${page}`;
+
     xhr.open("GET", url, true);
     xhr.send();
 
@@ -45,6 +57,7 @@ let renderPeople = (people) => {
         name.innerHTML = `${people.results[i].name}`;
         peopleDiv.appendChild(name);
 
+
         let birth_year = document.createElement("td");
         birth_year.className = "birth_year";
         birth_year.innerHTML = `${people.results[i].birth_year}`;
@@ -70,6 +83,14 @@ let renderPeople = (people) => {
         skin_color.innerHTML = `${people.results[i].skin_color}`;
         peopleDiv.appendChild(skin_color);
 
+
     }
 }
 
+//===================== Login JS =============================================================================
+
+
+  
+
+  
+ 
