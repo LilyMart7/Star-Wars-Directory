@@ -1,28 +1,16 @@
-window.addEventListener("load", peopleRequest());
+window.addEventListener("load", init);
 
-window.onload = function () {
+function init (){
     let preloader = document.getElementById('preloader');
     preloader.style.display = 'none';
+    let url = `https://swapi.co/api/people/`;
+    Request(url);
+
 }
 
-function peopleRequest(page) {
-
+function Request(url) {
     let xhr = new XMLHttpRequest();
-
-   /* let pagination = document.querySelector(".pagination");
-    let page = 1;
-    pagination.addEventListener("click", function() {
-        if (page >= 1) {
-            page++;
-            console.log(page);
-        }
-    });
-*/
-
-  
-
-    let url = `https://swapi.co/api/people/?page=${page}`;
-
+    
     xhr.open("GET", url, true);
     xhr.send();
 
@@ -37,11 +25,39 @@ function peopleRequest(page) {
             renderPeople(JSON.parse(xhr.responseText));
         }
     }
+}
+
+
+function Pagination() {
+
+    var paginationleElem = document.querySelector("#pagination");
+
+    for (let i = 1; i < 10; i++) {
+
+        let paginationDiv = document.createElement("div");
+        paginationDiv.className = "pageRow";
+        paginationleElem.appendChild(paginationDiv);
+
+        let nextPage = document.createElement("div");
+        nextPage.className = "page";
+        nextPage.innerHTML = i;
+        paginationDiv.appendChild(nextPage);
+
+        nextPage.addEventListener("click", NextPage);
+
+    }
 };
 
+function NextPage(){
+    let btnPg = this;
+    console.log(btnPg.innerHTML);
+    NexPageRequest(btnPg.innerHTML);
 
+}
 
-let renderPeople = (people) => {
+//============================================== Get info from SWAPI ========================================
+
+function renderPeople(people) {
     console.log(people);
 
     var peopleElem = document.querySelector("#people");
@@ -85,12 +101,37 @@ let renderPeople = (people) => {
 
 
     }
+    Pagination();
 }
+
+
+function NexPageRequest(page) {
+    console.log("new",page);
+    let url = `https://swapi.co/api/people/?page=${page}`;
+    let xhr = new XMLHttpRequest();
+    
+    xhr.open("GET", url, true);
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status != 200) {
+            var errStatus = xhr.status;
+            var errText = xhr.statusText;
+            console.log(errStatus + ": " + errText);
+        } else {
+            renderPeople(JSON.parse(xhr.responseText));
+        }
+    }
+}
+
+
+
 
 //===================== Login JS =============================================================================
 
 
-  
 
-  
- 
+
+
