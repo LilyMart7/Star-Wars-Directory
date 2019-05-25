@@ -307,13 +307,17 @@ h2 {
 	font-size: inherit;
 	color: #FFFFFF;
   }
-  
+	
+	.paginationRaw{
+		justify-content: center;
+	}
+
   .pagination {
 	margin-bottom: 16px;
 	padding: 16px;
 	border-radius: 4px;
 	overflow: hidden;
-
+align-items: center;
 	
   }
   
