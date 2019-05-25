@@ -47,7 +47,7 @@ function renderPeople(people) {
 
 }
 
-//============================================== Get info from SWAPI for pages ========================================
+//=================================== Get info from SWAPI with promises ========================================
 function reRender(people) {
 
     let arrOftd = document.querySelectorAll("td");
@@ -179,7 +179,68 @@ fetch("https://swapi.co/api/people/?page=1")
     })
 
 
-//============================================== Log in form ========================================
+//============================================== VALIDATION form ========================================
 
 
+const loginAdmin = "admin";
+const passwordAdmin = "admin777";
 
+let mainElement = document.querySelector(".mainDisplay");
+
+let getData = document.querySelector(".load");
+
+getData.addEventListener("click", data);
+
+function data(){
+//console.log("works");
+
+let login = document.querySelector(".username").value;
+let password = document.querySelector(".password").value;
+
+//console.log(`login ${login} password ${password}`);
+
+validation(login, password);
+}
+
+var error = document.querySelector(".error");
+error.style.display = "none";
+
+
+function validation (login, password){
+
+if(login === loginAdmin && password === passwordAdmin){
+    console.log("it's true");
+ 
+    localStorage.setItem("login", login);
+    localStorage.setItem("role", "admin");
+
+    if(localStorage.getItem("role") === "admin"){
+        mainElement.setAttribute("class", "d-block");
+        var error = document.querySelector(".error");
+       error.style.display = "none";
+    }
+
+}
+else{
+    console.log("it's false"); 
+    var error = document.querySelector(".error");
+    error.style.display = "block";
+
+}
+
+}
+
+let signOut = document.querySelector(".out");
+
+signOut.addEventListener("click", checkRole);
+
+function checkRole(){
+  localStorage.removeItem("login");
+  localStorage.removeItem("role");
+
+  if(localStorage.getItem("role") != "admin"){
+    mainElement.setAttribute("class", "d-none");
+  }
+}
+
+//===================================== Woooohoooooo ==============================================================
