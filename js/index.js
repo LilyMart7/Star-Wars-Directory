@@ -1,64 +1,7 @@
-window.addEventListener("load", init);
-
-function init (){
-    let preloader = document.getElementById('preloader');
-    preloader.style.display = 'none';
-    let url = `https://swapi.co/api/people/`;
-    Request(url);
-
-}
-
-function Request(url) {
-    let xhr = new XMLHttpRequest();
-    
-    xhr.open("GET", url, true);
-    xhr.send();
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState != 4) return;
-
-        if (xhr.status != 200) {
-            var errStatus = xhr.status;
-            var errText = xhr.statusText;
-            console.log(errStatus + ": " + errText);
-        } else {
-            renderPeople(JSON.parse(xhr.responseText));
-        }
-    }
-}
-
-
-function Pagination() {
-
-    var paginationleElem = document.querySelector("#pagination");
-
-    for (let i = 1; i < 10; i++) {
-
-        let paginationDiv = document.createElement("div");
-        paginationDiv.className = "pageRow";
-        paginationleElem.appendChild(paginationDiv);
-
-        let nextPage = document.createElement("div");
-        nextPage.className = "page";
-        nextPage.innerHTML = i;
-        paginationDiv.appendChild(nextPage);
-
-        nextPage.addEventListener("click", NextPage);
-
-    }
-};
-
-function NextPage(){
-    let btnPg = this;
-    console.log(btnPg.innerHTML);
-    NexPageRequest(btnPg.innerHTML);
-
-}
-
 //============================================== Get info from SWAPI ========================================
 
 function renderPeople(people) {
-    console.log(people);
+    //console.log(people);
 
     var peopleElem = document.querySelector("#people");
 
@@ -101,37 +44,142 @@ function renderPeople(people) {
 
 
     }
-    Pagination();
+
 }
 
+//============================================== Get info from SWAPI for pages ========================================
+function reRender(people) {
 
-function NexPageRequest(page) {
-    console.log("new",page);
-    let url = `https://swapi.co/api/people/?page=${page}`;
-    let xhr = new XMLHttpRequest();
-    
-    xhr.open("GET", url, true);
-    xhr.send();
+    let arrOftd = document.querySelectorAll("td");
+    //console.log(arrOftd);
+    let cntr = 0;
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState != 4) return;
-
-        if (xhr.status != 200) {
-            var errStatus = xhr.status;
-            var errText = xhr.statusText;
-            console.log(errStatus + ": " + errText);
-        } else {
-            renderPeople(JSON.parse(xhr.responseText));
-        }
+    for (let i = 0; i < people.results.length; i++) {
+        arrOftd[cntr++].innerHTML = people.results[i].name;
+        arrOftd[cntr++].innerHTML = people.results[i].birth_year;
+        arrOftd[cntr++].innerHTML = people.results[i].height;
+        arrOftd[cntr++].innerHTML = people.results[i].mass;
+        arrOftd[cntr++].innerHTML = people.results[i].hair_color;
+        arrOftd[cntr++].innerHTML = people.results[i].skin_color;
     }
 }
 
+fetch("https://swapi.co/api/people/?page=1")
+    .then((people) => {
+        return people.json();
+    })
+
+    .then((people) => {
+        renderPeople(people);
+        console.log(people);
+    })
+
+    .then(() => {
+        let page1 = document.querySelector(".onePage");
+        page1.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=1")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page2 = document.querySelector(".twoPage");
+        page2.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=2")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page3 = document.querySelector(".threePage");
+        page3.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=3")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page4 = document.querySelector(".fourPage");
+        page4.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=4")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page5 = document.querySelector(".fivePage");
+        page5.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=5")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page6 = document.querySelector(".sixPage");
+        page6.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=6")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page7 = document.querySelector(".sevenPage");
+        page7.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=7")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
+
+    .then(() => {
+        let page8 = document.querySelector(".eightPage");
+        page8.addEventListener("click", function () {
+            fetch("https://swapi.co/api/people/?page=8")
+                .then((people) => {
+                    return people.json();
+                })
+                .then((people) => {
+                    reRender(people);
+                })
+        })
+    })
 
 
-
-//===================== Login JS =============================================================================
-
-
+//============================================== Log in form ========================================
 
 
 
